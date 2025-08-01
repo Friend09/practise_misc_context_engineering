@@ -1,7 +1,7 @@
 # **🧠 Full AI Coding Assistant Workflow**
 
 This guide outlines a repeatable, structured process for working with AI coding assistants to build production-quality software. We'll use the example of building a Supabase MCP server with Python, but the same process applies to any AI coding workflow. [YouTube video here.](https://www.youtube.com/watch?v=SS5DYx6mPw8&lc=UgzGR6c1K1NtBAB00Ut4AaABAg)
-
+[Full Process for Coding with AI Coding Assistants](https://docs.google.com/document/d/12ATcyjCEKh8T-MPDZ-VMiQ1XMa9FUvvk2QazrsKoiR8/edit?pli=1&tab=t.0#heading=h.d9nuxo5lc9ss)
 ---
 
 ## **1\. 🔑 Golden Rules**
