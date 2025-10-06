@@ -17,9 +17,10 @@ Memory systems form the backbone of intelligent AI agents, enabling them to lear
 ### The Memory Challenge
 
 Modern AI agents require multiple types of memory:
+
 - **Working Memory**: Immediate context for current tasks
 - **Episodic Memory**: Specific experiences and interactions
-- **Semantic Memory**: General knowledge and learned patterns  
+- **Semantic Memory**: General knowledge and learned patterns
 - **Procedural Memory**: Learned skills and processes
 - **Declarative Memory**: Facts and explicit knowledge
 
@@ -28,30 +29,35 @@ Each memory type requires different storage, retrieval, and management strategie
 ## 📖 Lessons
 
 ### [Lesson 1: Memory Architecture and Design Patterns](lessons/01_memory_architecture.md)
+
 - Multi-tier memory system design
 - Memory hierarchy optimization for AI agents
 - Memory access patterns and performance considerations
 - Integration with context engineering principles
 
 ### [Lesson 2: Persistent Context Storage Systems](lessons/02_persistent_storage.md)
+
 - Database design for AI agent memory
 - Context serialization and deserialization strategies
 - Distributed storage and synchronization
 - Backup and recovery systems for critical memory
 
 ### [Lesson 3: Hierarchical Memory Management](lessons/03_hierarchical_memory.md)
+
 - Working memory optimization techniques
 - Long-term memory consolidation processes
 - Memory promotion and demotion algorithms
 - Cross-memory search and retrieval systems
 
 ### [Lesson 4: Memory Lifecycle and Optimization](lessons/04_memory_lifecycle.md)
+
 - Automatic memory archiving and cleanup
 - Memory compression and deduplication
 - Performance monitoring and optimization
 - Memory health assessment and maintenance
 
 ### [Lesson 5: Advanced Memory Patterns](lessons/05_advanced_patterns.md)
+
 - Associative memory networks
 - Memory-based learning and adaptation
 - Context-aware memory retrieval
@@ -60,21 +66,25 @@ Each memory type requires different storage, retrieval, and management strategie
 ## 🛠️ Hands-On Exercises
 
 ### [Exercise 5.1: Multi-Tier Memory System](exercises/exercise_5_1.py)
+
 **Objective**: Build a complete hierarchical memory system for AI agents
 **Skills**: Memory architecture, data structures, performance optimization
 **Duration**: 150 minutes
 
 ### [Exercise 5.2: Persistent Context Engine](exercises/exercise_5_2.py)
+
 **Objective**: Implement persistent storage with serialization and recovery
 **Skills**: Database design, serialization, backup/recovery systems
 **Duration**: 120 minutes
 
 ### [Exercise 5.3: Memory Lifecycle Manager](exercises/exercise_5_3.py)
+
 **Objective**: Create automated systems for memory management and optimization
 **Skills**: Lifecycle management, automation, monitoring systems
 **Duration**: 135 minutes
 
 ### [Exercise 5.4: Production Memory Infrastructure](exercises/exercise_5_4.py)
+
 **Objective**: Deploy scalable memory systems with monitoring and analytics
 **Skills**: Production deployment, scaling, monitoring, analytics
 **Duration**: 180 minutes
@@ -82,6 +92,7 @@ Each memory type requires different storage, retrieval, and management strategie
 ## ✅ Solutions
 
 Complete solutions with explanations are available in the [solutions/](solutions/) directory:
+
 - [Exercise 5.1 Solution](solutions/exercise_5_1_solution.py)
 - [Exercise 5.2 Solution](solutions/exercise_5_2_solution.py)
 - [Exercise 5.3 Solution](solutions/exercise_5_3_solution.py)
@@ -90,6 +101,7 @@ Complete solutions with explanations are available in the [solutions/](solutions
 ## 🧪 Testing
 
 Automated tests validate your exercise implementations:
+
 ```bash
 # Run all Module 5 tests
 python -m pytest tests/test_module_05.py
@@ -104,18 +116,21 @@ python tests/test_persistence_recovery.py
 ## 📊 Assessment
 
 ### Knowledge Check Questions
+
 1. What are the key differences between working, episodic, and semantic memory in AI systems?
 2. How do you design memory systems that balance performance with comprehensive storage?
 3. What strategies ensure memory consistency across distributed agent instances?
 4. How do you implement effective memory lifecycle management for long-running systems?
 
 ### Practical Assessment
+
 - Build complete multi-tier memory systems handling 100,000+ memory items
 - Implement persistent storage with <10ms average retrieval times
 - Create lifecycle management reducing memory footprint by >60% over time
 - Deploy production systems with 99.99% availability and automatic recovery
 
 ### Success Criteria
+
 - ✅ Memory systems maintain sub-10ms retrieval for working memory
 - ✅ Persistent storage survives system restarts and failures
 - ✅ Hierarchical memory optimizes performance across all tiers
@@ -140,6 +155,7 @@ class HierarchicalMemorySystem:
 ### 2. Memory Access Patterns
 
 Different memory tiers optimized for different access patterns:
+
 - **Immediate**: Current interaction context (RAM)
 - **Working**: Active task information (Fast SSD/Memory)
 - **Session**: Current conversation context (SSD)
@@ -150,6 +166,7 @@ Different memory tiers optimized for different access patterns:
 ### 3. Memory Lifecycle Management
 
 Automated systems manage memory across its lifecycle:
+
 ```python
 class MemoryLifecycleManager:
     """Manages memory promotion, demotion, and cleanup"""
@@ -165,6 +182,7 @@ class MemoryLifecycleManager:
 ### 1. Associative Memory Networks
 
 Build memory systems that maintain associations:
+
 ```python
 class AssociativeMemoryNetwork:
     """Memory system with associative retrieval"""
@@ -177,6 +195,7 @@ class AssociativeMemoryNetwork:
 ### 2. Context-Aware Memory Retrieval
 
 Implement retrieval systems that consider current context:
+
 - **Contextual relevance scoring**: Weight memories by current context
 - **Temporal relevance**: Consider recency and temporal patterns
 - **Association strength**: Leverage memory interconnections
@@ -185,6 +204,7 @@ Implement retrieval systems that consider current context:
 ### 3. Memory Compression and Deduplication
 
 Optimize memory usage through intelligent compression:
+
 - **Semantic clustering**: Group similar memories for compression
 - **Temporal compression**: Compress older memories more aggressively
 - **Deduplication**: Remove redundant memory items
@@ -195,7 +215,9 @@ Optimize memory usage through intelligent compression:
 ### Database Design Patterns
 
 #### 1. Polyglot Persistence
+
 Use different databases for different memory types:
+
 - **Redis**: Fast working memory cache
 - **PostgreSQL**: Structured episodic memory
 - **MongoDB**: Flexible semantic memory documents
@@ -203,7 +225,9 @@ Use different databases for different memory types:
 - **Elasticsearch**: Full-text memory search
 
 #### 2. Memory Partitioning
+
 Partition memory data for scalability:
+
 ```sql
 -- Partition episodic memory by time
 CREATE TABLE episodic_memory (
@@ -215,21 +239,25 @@ CREATE TABLE episodic_memory (
 ```
 
 #### 3. Backup and Recovery
+
 Implement robust backup strategies:
+
 - **Incremental backups**: Capture only changes
-- **Cross-region replication**: Geographic redundancy  
+- **Cross-region replication**: Geographic redundancy
 - **Point-in-time recovery**: Restore to specific moments
 - **Automated testing**: Verify backup integrity
 
 ## 🔧 Performance Optimization
 
 ### Memory Access Optimization
+
 - **Caching layers**: Multi-level caches for frequent access
 - **Prefetching**: Anticipate memory needs based on patterns
 - **Connection pooling**: Efficient database connection management
 - **Query optimization**: Optimize memory retrieval queries
 
 ### Storage Optimization
+
 - **Compression algorithms**: Reduce storage footprint
 - **Index optimization**: Fast memory lookup and retrieval
 - **Data archiving**: Move cold data to cheaper storage
@@ -238,12 +266,14 @@ Implement robust backup strategies:
 ## 📊 Memory Analytics and Monitoring
 
 ### Performance Metrics
+
 - **Retrieval latency**: Average and percentile response times
 - **Memory utilization**: Storage usage across tiers
 - **Hit rates**: Cache effectiveness across memory layers
 - **Memory lifecycle**: Promotion/demotion rates and patterns
 
 ### Health Monitoring
+
 - **Memory consistency**: Cross-tier synchronization status
 - **Storage capacity**: Usage trends and capacity planning
 - **Error rates**: Memory access and storage failures
@@ -252,12 +282,14 @@ Implement robust backup strategies:
 ## 🚀 Production Deployment
 
 ### Scalability Patterns
+
 - **Horizontal scaling**: Distribute memory across multiple instances
 - **Sharding strategies**: Partition memory for performance
 - **Load balancing**: Distribute memory access load
 - **Auto-scaling**: Dynamic resource allocation
 
 ### High Availability
+
 - **Redundancy**: Multiple copies of critical memories
 - **Failover**: Automatic switching to backup systems
 - **Health checks**: Continuous system monitoring
@@ -273,6 +305,7 @@ Implement robust backup strategies:
 ## 🚀 Next Steps
 
 After completing this module:
+
 1. **Implement** memory systems in your AI applications
 2. **Optimize** memory performance for your specific use cases
 3. **Proceed** to Module 6 for tool integration and external context
@@ -281,11 +314,13 @@ After completing this module:
 ## 📚 Additional Resources
 
 ### Research Papers
+
 - [Memory-Augmented Neural Networks](https://arxiv.org/abs/1605.06065)
 - [Differentiable Neural Computers](https://arxiv.org/abs/1610.06258)
 - [Hierarchical Memory Networks for Answer Selection](https://arxiv.org/abs/1707.07111)
 
 ### Tools and Technologies
+
 - **Redis**: High-performance in-memory data store
 - **PostgreSQL**: Advanced relational database with JSON support
 - **MongoDB**: Document database for flexible memory storage
@@ -294,6 +329,7 @@ After completing this module:
 - **Apache Kafka**: Stream processing for memory updates
 
 ### Industry Examples
+
 - **OpenAI GPT Models**: Context window management and memory
 - **DeepMind Sparrow**: Long-term memory for conversational agents
 - **Anthropic Claude**: Conversation memory and context persistence
