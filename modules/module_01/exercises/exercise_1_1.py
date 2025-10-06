@@ -24,7 +24,7 @@ class ContextComponent:
     component_type: str
     created_at: datetime
     component_id: str
-    
+
     def __post_init__(self):
         if not hasattr(self, 'component_id') or not self.component_id:
             self.component_id = str(uuid.uuid4())
@@ -40,7 +40,7 @@ class SystemInstructions(ContextComponent):
     constraints: List[str]
     behavior_guidelines: List[str]
     output_format: Dict[str, Any]
-    
+
     def __post_init__(self):
         self.component_type = "system_instructions"
         super().__post_init__()
@@ -53,7 +53,7 @@ class UserInput(ContextComponent):
     requirements: List[str]
     context_clues: Dict[str, Any]
     implicit_assumptions: List[str]
-    
+
     def __post_init__(self):
         self.component_type = "user_input"
         super().__post_init__()
@@ -65,7 +65,7 @@ class ShortTermMemory(ContextComponent):
     recent_interactions: List[Dict[str, Any]]
     conversation_flow: List[str]
     decisions_made: List[Dict[str, Any]]
-    
+
     def __post_init__(self):
         self.component_type = "short_term_memory"
         super().__post_init__()
@@ -77,7 +77,7 @@ class LongTermMemory(ContextComponent):
     user_preferences: Dict[str, Any]
     historical_patterns: List[Dict[str, Any]]
     accumulated_knowledge: Dict[str, Any]
-    
+
     def __post_init__(self):
         self.component_type = "long_term_memory"
         super().__post_init__()
@@ -85,7 +85,7 @@ class LongTermMemory(ContextComponent):
 
 class ContextStructure:
     """Main class for organizing and validating context structures"""
-    
+
     def __init__(self):
         self.components = {}
         self.metadata = {
@@ -93,17 +93,17 @@ class ContextStructure:
             'structure_id': str(uuid.uuid4()),
             'version': '1.0'
         }
-    
+
     def add_component(self, component: ContextComponent) -> bool:
         """
         Add a context component to the structure.
-        
+
         Args:
             component: A ContextComponent instance
-            
+
         Returns:
             bool: True if component was added successfully
-            
+
         TODO: Implement this method
         - Validate the component type
         - Check for duplicate component types (should replace if exists)
@@ -112,18 +112,18 @@ class ContextStructure:
         """
         # Your implementation here
         pass
-    
+
     def validate_structure(self) -> Dict[str, Any]:
         """
         Validate the complete context structure.
-        
+
         Returns:
             Dict containing validation results with:
             - is_valid: bool
             - errors: List[str]
             - warnings: List[str]
             - completeness_score: float (0.0 to 1.0)
-        
+
         TODO: Implement validation logic
         - Check if required components are present
         - Validate component content
@@ -132,14 +132,14 @@ class ContextStructure:
         """
         # Your implementation here
         pass
-    
+
     def to_json(self) -> str:
         """
         Convert context structure to JSON format.
-        
+
         Returns:
             str: JSON representation of the context structure
-            
+
         TODO: Implement JSON serialization
         - Convert all components to dictionaries
         - Include metadata
@@ -148,14 +148,14 @@ class ContextStructure:
         """
         # Your implementation here
         pass
-    
+
     def to_xml(self) -> str:
         """
         Convert context structure to XML format.
-        
+
         Returns:
             str: XML representation of the context structure
-            
+
         TODO: Implement XML serialization
         - Create XML structure with proper hierarchy
         - Convert each component to XML elements
@@ -164,17 +164,17 @@ class ContextStructure:
         """
         # Your implementation here
         pass
-    
+
     def from_json(self, json_str: str) -> bool:
         """
         Load context structure from JSON.
-        
+
         Args:
             json_str: JSON string representation
-            
+
         Returns:
             bool: True if loaded successfully
-            
+
         TODO: Implement JSON deserialization
         - Parse JSON string
         - Reconstruct component objects
@@ -187,15 +187,15 @@ class ContextStructure:
 
 class ContextScenarioBuilder:
     """Helper class for building context scenarios"""
-    
+
     @staticmethod
     def build_code_review_scenario() -> ContextStructure:
         """
         Build a context structure for a code review scenario.
-        
+
         Returns:
             ContextStructure: Complete context for code review task
-            
+
         TODO: Create a realistic code review context
         - System instructions for a code review assistant
         - User input requesting a specific code review
@@ -204,15 +204,15 @@ class ContextScenarioBuilder:
         """
         # Your implementation here
         pass
-    
+
     @staticmethod
     def build_customer_support_scenario() -> ContextStructure:
         """
         Build a context structure for customer support scenario.
-        
+
         Returns:
             ContextStructure: Complete context for customer support task
-            
+
         TODO: Create a realistic customer support context
         - System instructions for a support agent
         - User input with a customer issue
@@ -221,15 +221,15 @@ class ContextScenarioBuilder:
         """
         # Your implementation here
         pass
-    
+
     @staticmethod
     def build_research_assistant_scenario() -> ContextStructure:
         """
         Build a context structure for research assistant scenario.
-        
+
         Returns:
             ContextStructure: Complete context for research task
-            
+
         TODO: Create a realistic research assistant context
         - System instructions for research capabilities
         - User input with research request
@@ -244,10 +244,10 @@ def test_context_structure():
     """Test function for context structure implementation"""
     print("Testing Context Structure Implementation")
     print("=" * 50)
-    
+
     # Test 1: Component Addition
     structure = ContextStructure()
-    
+
     # Create system instructions
     system = SystemInstructions(
         component_type="",  # Will be set in __post_init__
@@ -259,15 +259,15 @@ def test_context_structure():
         behavior_guidelines=["be_helpful", "be_accurate", "be_concise"],
         output_format={"format": "markdown", "include_examples": True}
     )
-    
+
     # Test component addition
     success = structure.add_component(system)
     print(f"Component addition test: {'PASS' if success else 'FAIL'}")
-    
+
     # Test 2: Structure Validation
     validation = structure.validate_structure()
     print(f"Structure validation test: {'PASS' if isinstance(validation, dict) else 'FAIL'}")
-    
+
     # Test 3: JSON Serialization
     try:
         json_output = structure.to_json()
@@ -275,7 +275,7 @@ def test_context_structure():
         print(f"JSON serialization test: {'PASS' if json_test else 'FAIL'}")
     except:
         print("JSON serialization test: FAIL")
-    
+
     # Test 4: XML Serialization
     try:
         xml_output = structure.to_xml()
@@ -283,17 +283,17 @@ def test_context_structure():
         print(f"XML serialization test: {'PASS' if xml_test is not None else 'FAIL'}")
     except:
         print("XML serialization test: FAIL")
-    
+
     # Test 5: Scenario Building
     scenarios = [
         ContextScenarioBuilder.build_code_review_scenario(),
         ContextScenarioBuilder.build_customer_support_scenario(),
         ContextScenarioBuilder.build_research_assistant_scenario()
     ]
-    
+
     valid_scenarios = [s for s in scenarios if s is not None]
     print(f"Scenario building test: {'PASS' if len(valid_scenarios) == 3 else 'FAIL'}")
-    
+
     print("\nExercise 1.1 Implementation Status:")
     print("- Implement all TODO methods in the classes above")
     print("- Run this test function to validate your implementation")
@@ -305,7 +305,7 @@ def main():
     print("Context Engineering Exercise 1.1: Basic Context Structuring")
     print("=" * 60)
     print()
-    
+
     print("This exercise focuses on:")
     print("1. Understanding the 9 context components")
     print("2. Creating structured context representations")
@@ -313,17 +313,17 @@ def main():
     print("4. Serializing context to different formats")
     print("5. Building realistic context scenarios")
     print()
-    
+
     print("Your tasks:")
     print("1. Implement all methods marked with TODO")
     print("2. Create realistic context scenarios")
     print("3. Test your implementation thoroughly")
     print("4. Ensure all validation tests pass")
     print()
-    
+
     # Run tests
     test_context_structure()
-    
+
     print("\nNext Steps:")
     print("- Complete all TODO implementations")
     print("- Experiment with different context structures")

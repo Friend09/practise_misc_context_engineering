@@ -11,13 +11,15 @@ Effective context engineering requires understanding and managing nine core comp
 **Purpose**: Define the AI's base behavior, capabilities, and operational parameters.
 
 **Key Elements**:
+
 - Role definition and persona
-- Behavioral guidelines and constraints  
+- Behavioral guidelines and constraints
 - Capability descriptions and limitations
 - Output format specifications
 - Safety and ethical guidelines
 
 **Example**:
+
 ```
 You are a senior software engineer assistant with expertise in Python, JavaScript, and system architecture. You provide accurate, well-reasoned technical advice and write clean, maintainable code.
 
@@ -33,6 +35,7 @@ Guidelines:
 **Purpose**: Capture current task requirements, questions, and immediate context.
 
 **Key Elements**:
+
 - Primary request or question
 - Specific requirements and constraints
 - Preferred output format
@@ -40,6 +43,7 @@ Guidelines:
 - Implicit assumptions and expectations
 
 **Best Practices**:
+
 - Parse both explicit and implicit requirements
 - Identify ambiguities that need clarification
 - Extract key constraints and preferences
@@ -50,6 +54,7 @@ Guidelines:
 **Purpose**: Maintain recent interaction context for conversation coherence.
 
 **Key Elements**:
+
 - Recent message exchanges (typically last 5-20 turns)
 - Conversation flow and logical progression
 - Decisions made and rationale provided
@@ -57,12 +62,13 @@ Guidelines:
 - Contextual references and dependencies
 
 **Implementation Strategy**:
+
 ```python
 class ShortTermMemory:
     def __init__(self, max_turns=20):
         self.history = []
         self.max_turns = max_turns
-    
+
     def add_interaction(self, user_input, assistant_response, metadata=None):
         interaction = {
             'timestamp': datetime.now(),
@@ -71,7 +77,7 @@ class ShortTermMemory:
             'metadata': metadata or {}
         }
         self.history.append(interaction)
-        
+
         # Maintain sliding window
         if len(self.history) > self.max_turns:
             self.history.pop(0)
@@ -82,6 +88,7 @@ class ShortTermMemory:
 **Purpose**: Store and retrieve historical knowledge, patterns, and accumulated insights.
 
 **Key Elements**:
+
 - User preferences and patterns
 - Historical decisions and outcomes
 - Learned insights and discoveries
@@ -89,6 +96,7 @@ class ShortTermMemory:
 - Domain-specific knowledge accumulated over time
 
 **Storage Patterns**:
+
 - **Vector databases** for semantic similarity search
 - **Structured databases** for factual information
 - **Key-value stores** for user preferences
@@ -99,6 +107,7 @@ class ShortTermMemory:
 **Purpose**: Provide access to external information, documentation, and reference materials.
 
 **Key Elements**:
+
 - Domain-specific documentation
 - Code repositories and examples
 - Best practices and guidelines
@@ -106,6 +115,7 @@ class ShortTermMemory:
 - Real-time information feeds
 
 **Integration Methods**:
+
 - **RAG (Retrieval-Augmented Generation)**: Dynamic retrieval based on query relevance
 - **Knowledge graphs**: Structured relationship mapping
 - **API integrations**: Real-time data access
@@ -116,6 +126,7 @@ class ShortTermMemory:
 **Purpose**: Define available actions, functions, and external system integrations.
 
 **Key Elements**:
+
 - Function signatures and parameters
 - Capability descriptions and limitations
 - Usage examples and best practices
@@ -123,6 +134,7 @@ class ShortTermMemory:
 - Tool dependencies and requirements
 
 **Example Tool Definition**:
+
 ```json
 {
   "name": "execute_code",
@@ -133,7 +145,7 @@ class ShortTermMemory:
       "description": "Python code to execute"
     },
     "timeout": {
-      "type": "integer", 
+      "type": "integer",
       "description": "Maximum execution time in seconds",
       "default": 30
     }
@@ -151,6 +163,7 @@ class ShortTermMemory:
 **Purpose**: Capture outcomes from tool executions and external system interactions.
 
 **Key Elements**:
+
 - Execution results and outputs
 - Error messages and diagnostics
 - Performance metrics and metadata
@@ -158,6 +171,7 @@ class ShortTermMemory:
 - Success/failure indicators
 
 **Response Processing**:
+
 ```python
 def process_tool_response(self, tool_name, response):
     """Process and contextualize tool response"""
@@ -171,10 +185,10 @@ def process_tool_response(self, tool_name, response):
             'resource_usage': response.get('resource_usage')
         }
     }
-    
+
     # Add to context for future reference
     self.add_tool_result(processed)
-    
+
     return processed
 ```
 
@@ -183,6 +197,7 @@ def process_tool_response(self, tool_name, response):
 **Purpose**: Define expected response structure, format, and validation criteria.
 
 **Key Elements**:
+
 - Schema definitions and constraints
 - Output format specifications (JSON, XML, Markdown)
 - Validation rules and requirements
@@ -190,6 +205,7 @@ def process_tool_response(self, tool_name, response):
 - Error handling for malformed outputs
 
 **Schema Example**:
+
 ```json
 {
   "type": "object",
@@ -197,10 +213,10 @@ def process_tool_response(self, tool_name, response):
     "analysis": {
       "type": "object",
       "properties": {
-        "summary": {"type": "string"},
+        "summary": { "type": "string" },
         "key_findings": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "confidence_score": {
           "type": "number",
@@ -215,9 +231,9 @@ def process_tool_response(self, tool_name, response):
       "items": {
         "type": "object",
         "properties": {
-          "action": {"type": "string"},
-          "priority": {"type": "string", "enum": ["high", "medium", "low"]},
-          "rationale": {"type": "string"}
+          "action": { "type": "string" },
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+          "rationale": { "type": "string" }
         }
       }
     }
@@ -230,6 +246,7 @@ def process_tool_response(self, tool_name, response):
 **Purpose**: Track system-wide state, workflow progress, and cross-session context.
 
 **Key Elements**:
+
 - Current workflow stage and progress
 - System configuration and settings
 - Cross-session state persistence
@@ -237,6 +254,7 @@ def process_tool_response(self, tool_name, response):
 - Workflow dependencies and relationships
 
 **State Management**:
+
 ```python
 class GlobalState:
     def __init__(self):
@@ -245,15 +263,15 @@ class GlobalState:
         self.user_preferences = {}
         self.system_config = {}
         self.session_metadata = {}
-    
+
     def update_workflow_stage(self, new_stage, context=None):
         """Update workflow stage with context preservation"""
         previous_stage = self.workflow_stage
         self.workflow_stage = new_stage
-        
+
         # Log transition
         self.log_state_transition(previous_stage, new_stage, context)
-        
+
         # Trigger any necessary state updates
         self.handle_stage_transition(previous_stage, new_stage)
 ```
@@ -287,6 +305,7 @@ Global State → Maintains system consistency
 ### 2. Context Validation Chain
 
 Each component should validate and enhance the others:
+
 - **System instructions** validate tool usage
 - **User input** is checked against **knowledge base**
 - **Tool responses** update **global state**
@@ -295,6 +314,7 @@ Each component should validate and enhance the others:
 ### 3. Context Compression Strategy
 
 As context grows, components follow a priority hierarchy:
+
 1. **System instructions** (always preserved)
 2. **User input** (current task - highest priority)
 3. **Tool responses** (immediate results)
@@ -308,21 +328,25 @@ As context grows, components follow a priority hierarchy:
 ## Best Practices for Component Management
 
 ### 1. Component Independence
+
 - Each component should be self-contained and well-defined
 - Minimize tight coupling between components
 - Enable component updates without breaking others
 
 ### 2. Context Validation
+
 - Validate each component before assembly
 - Check for consistency across components
 - Implement fallback strategies for missing components
 
 ### 3. Performance Optimization
+
 - Load components lazily based on need
 - Cache frequently accessed components
 - Implement efficient component serialization
 
 ### 4. Monitoring and Metrics
+
 - Track component usage and performance
 - Monitor component interaction patterns
 - Measure context assembly time and resource usage
@@ -330,24 +354,29 @@ As context grows, components follow a priority hierarchy:
 ## Common Anti-Patterns
 
 ### 1. Component Bloat
+
 **Problem**: Including unnecessary information in components
 **Solution**: Regular pruning and relevance filtering
 
 ### 2. Context Conflicts
+
 **Problem**: Components providing contradictory information
 **Solution**: Conflict resolution strategies and priority hierarchies
 
 ### 3. Stale Context
+
 **Problem**: Components not updating with new information
 **Solution**: Automated refresh mechanisms and staleness detection
 
 ### 4. Poor Component Boundaries
+
 **Problem**: Mixing different types of information within components
 **Solution**: Clear separation of concerns and well-defined interfaces
 
 ## Hands-On Exercise Preview
 
 In the upcoming exercises, you'll practice:
+
 1. Identifying and categorizing the 9 components in real scenarios
 2. Designing component interaction patterns
 3. Implementing context validation and consistency checks
